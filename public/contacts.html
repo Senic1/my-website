@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Контакты</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <h1>Свяжитесь с нами</h1>
+    </header>
+
+    <main>
+        <section class="contacts">
+            <h2>Наши контакты</h2>
+            <p><strong>Адрес:</strong> ул. Домовая, 3, Санкт-Петербург</p>
+            <p><strong>Телефон:</strong> +7(123)-456-78-90</p>
+            <p><strong>Email:</strong> info@smart-home.com</p>
+        </section>
+
+        
+
+        <!-- Карта магазина -->
+        <section id="map" style="height: 400px; width: 100%;"></section>
+    </main>
+
+    <footer>
+        <p>© 2024 Умный Дом.</p>
+    </footer>
+
+    <!-- Подключение Яндекс Карт API -->
+    <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=0a75a8c2-1d24-4d42-b36e-30248a50af8e&load=package.standard&lang=ru-RU" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        ymaps.ready(function () {
+            var myMap = new ymaps.Map("map", {
+                center: [59.92, 30.32],  // Координаты центра карты
+                zoom: 7  // Уровень масштабирования
+            });
+
+            var myPlacemark = new ymaps.Placemark([59.92, 30.32], {
+                hintContent: 'ООО Умный дом!',
+                balloonContent: 'Лучшая компания'
+            });
+
+            myMap.geoObjects.add(myPlacemark);  // Добавление маркера на карту
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

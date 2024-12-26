@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация и регистрация</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        form { display: flex; flex-direction: column; gap: 10px; width: 300px; }
+        input { padding: 10px; }
+        button { padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <form id="authForm">
+    <h2>Авторизация / Регистрация</h2>
+    <input type="text" id="username" placeholder="Имя пользователя" required>
+    <input type="password" id="password" placeholder="Пароль" required>
+    <button type="submit">Войти / Зарегистрироваться</button>
+    <p id="message"></p>
+</form>
+
+<script>
+const form = document.getElementById('authForm');
+const message = document.getElementById('message');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Сначала проверяем, существует ли пользователь для авторизации
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text(); // Получаем сообщение от сервера
+        } else {
+            return response.text().then(error => { // Получаем ошибку от сервера
+                throw new Error(error);
+            });
+        }
+    })
+    .then(result => {
+        // Если вход успешен, перенаправляем на главную страницу
+        if (result === "Успешный вход!") {
+            message.textContent = result;
+            message.style.color = 'green';
+            localStorage.setItem("username", username); // Сохраняем имя пользователя в localStorage
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+    })
+    .catch((error) => {
+        message.textContent = error.message;
+        message.style.color = 'red';
+
+        // Если вход не успешен, пробуем зарегистрировать нового пользователя
+        if (error.message === "Пользователь не найден" || error.message === "Неверный пароль") {
+            // Попробуем зарегистрировать нового пользователя
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    return response.text().then(error => { 
+                        throw new Error(error);
+                    });
+                }
+            })
+            .then(result => {
+                // После успешной регистрации отправляем сообщение
+                if (result === "Пользователь зарегистрирован!") {
+                    message.textContent = result;
+                    message.style.color = 'green';
+                    localStorage.setItem("username", username); // Сохраняем имя пользователя в localStorage
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                message.textContent = error.message;
+                message.style.color = 'red';
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>

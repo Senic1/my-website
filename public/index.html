@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Главная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Проверка на наличие пользователя в LocalStorage -->
+        <div id="userSection">
+            <p id="welcomeMessage"></p>
+            <a href="loginpass.html" id="loginButton">Вход / Регистрация</a>
+            <a href="javascript:void(0);" id="logoutButton" style="display:none;">Выйти</a>
+        </div>
+        
+        <h1>Добро пожаловать в Умный Дом</h1>
+    </header>
+
+    <main>
+        <section class="about-us">
+            <h2>Кто мы</h2>
+            <p>Мы - компания, предоставляющая лучшие товары для автоматизации вашего дома.</p>
+        </section>
+
+        <section class="services">
+            <h2>Наши услуги</h2>
+            <p>Мы предлагаем широкий выбор товаров для умного дома.</p>
+        </section>
+
+        <section class="gallery">
+            <img src="https://delo-elektrika.ru/izobrajeniya/umnyi-dom_files/umnyi-dom-2.jpg" alt="Умный дом 1">
+            <img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iFl7cCRTrk1Y/v0/1200x891.jpg" alt="Умный дом 2">
+            <img src="https://avatars.mds.yandex.net/i?id=3b25d310a264c483133dbcb8d45da1de70c0772e-5843049-images-thumbs&n=13" alt="Умный дом 3">
+            <img src="https://avatars.mds.yandex.net/i?id=ea84f4169dd4436bf3f5947adc089c0dbbd190a5-5482298-images-thumbs&n=13" alt="Умный дом 4">
+            <img src="https://avatars.mds.yandex.net/i?id=7d083a8fb479a820cc896b3ba3afc930_l-4984230-images-thumbs&n=13" alt="Умный дом 5">
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Умный Дом.</p>
+    </footer>
+
+    <script>
+        // Проверка, вошел ли пользователь
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            // Если пользователь вошел, показываем его имя и кнопку "Выйти"
+            document.getElementById("welcomeMessage").textContent = `Привет, ${username}!`;
+            document.getElementById("loginButton").style.display = "none";
+            document.getElementById("logoutButton").style.display = "inline";
+        } else {
+            // Если не вошел, показываем только кнопку входа
+            document.getElementById("loginButton").style.display = "inline";
+            document.getElementById("logoutButton").style.display = "none";
+        }
+
+        // Обработчик для кнопки "Выйти"
+        document.getElementById("logoutButton").addEventListener("click", () => {
+            // Удаляем имя пользователя из localStorage
+            localStorage.removeItem("username");
+            window.location.href = "index.html"; // Перезагружаем страницу
+        });
+    </script>
+    
+</body>
+</html>

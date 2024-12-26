@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Каталог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <h1>Каталог Умного Дома</h1>
+    </header>
+
+    <section class="catalog">
+        <h2>Наши товары</h2>
+
+        <div class="products">
+            <!-- Видеокамера -->
+            <div class="product">
+                <h3>Видеокамера</h3>
+                <img src="https://avatars.mds.yandex.net/i?id=e113ba715889743c47d2e2b521f56871354dc946-4600903-images-thumbs&n=13" alt="Видеокамера">
+                <p>Высококачественная видеокамера для наблюдения за вашим домом. Поддержка HD видео и ночного видения. Цена: 15.000 руб.</p>
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productName" value="Видеокамера">
+                    <input type="number" name="quantity" value="1" required>
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            </div>
+
+            <!-- Система сигнализации -->
+            <div class="product">
+                <h3>Система сигнализации</h3>
+                <img src="https://avatars.mds.yandex.net/i?id=563ace2e5603c193e5709c16e2806b08c1b3eb3c-12216120-images-thumbs&n=13" alt="Система сигнализации">
+                <p>Современная система сигнализации с функцией уведомления на смартфон. Обеспечивает безопасность вашего дома. Цена: 20.000 руб.</p>
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productName" value="Система сигнализации">
+                    <input type="number" name="quantity" value="1" required>
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            </div>
+
+            <!-- Кондиционер -->
+            <div class="product">
+                <h3>Кондиционер</h3>
+                <img src="https://resizer.mail.ru/p/29df65b2-f5fa-5d2b-b3f1-91d4f5da24d7/AQAKAj7IoZ5Xx6gRhJQbYsuEcaqNmKAqet6Oy5oNZWd7XyILwueAj8rQ-ejgk_-wSp5fpFeyMt7n_CWXv3RXtAOAW1g.png" alt="Кондиционер">
+                <p>Энергоэффективный кондиционер с возможностью управления через приложение. Обеспечивает комфорт в вашем доме. Цена: 35.000 руб.</p>
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="productName" value="Кондиционер">
+                    <input type="number" name="quantity" value="1" required>
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            </div>
+        </div> <!-- Закрытие блока "products" -->
+    </section>
+
+    <section class="cart">
+        <a href="/cart">Перейти в корзину</a>
+    </section>
+
+    <footer>
+        <p>© 2024 Умный Дом.</p>
+    </footer>
+</body>
+</html>
